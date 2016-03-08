@@ -6,7 +6,7 @@
 %
 
 % USER INPUT:
-% Define Interval (x1,x2)
+% Define Interval (x1,x2
 x1 = -2;
 x2 = 2;
 
@@ -51,7 +51,7 @@ for i = 1 : size(rhs_local,1)
     locToGlob(i,2) = i+1;
 end
 
-% Start calculatoin of the global integral of the RHS using the local
+% Start calculation of the global integral of the RHS using the local
 % integrals
 rhs_global = zeros(numberOfElements+1 , 1);
 % for each node

@@ -10,6 +10,6 @@ function [ y ] = f( x )
 %   y       ...     evaluted value on point x
 %
 %
-    y = x.^5 .* exp(x);
+    y = x.^2;
 end
 
