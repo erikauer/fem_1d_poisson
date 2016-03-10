@@ -6,12 +6,12 @@
 %
 
 % USER INPUT:
-% Define Interval (x1,x2
+% Define Interval (x1,x2)
 x1 = -2;
 x2 = 2;
 
 % Define the step size h for the FEM Method. In this example we choose a
-% equidistant mesh. These means that we splitt the interval defined before
+% equidistant mesh. These means that we split the interval defined before
 % into elements with the same size h.
 h = 1./32;
 
