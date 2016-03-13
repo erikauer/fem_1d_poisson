@@ -33,7 +33,7 @@ arrays. So use operations like .* instead of *. Here is an short example:
      y = x.^3;
 
 ## Mathematical Context
-To understand whats going on in this Matlab example we need do do some math. Here you get a short mathematical
+To understand whats going on in this Matlab example we need to do some math. Here you get a short mathematical
 introduction how to prepare the poission equation for FEM.
 
 ### Mathematical Problem
