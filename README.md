@@ -43,7 +43,7 @@ We want to solve following mathematical problem - 1 dimensional poisson equation
 
 ![Poisson Equation Boundary](http://mathurl.com/jnfb5r9.png)
 
-Before we start the implementation we need to do some math ;). We need to derive a weak formulation of the Equations above.
+Before we start the implementation we need to do some math ;). We need to derive a weak formulation of the equation above.
 So lets start ...
 
 ### Weak formulation
@@ -101,16 +101,16 @@ which is equal to the linear System
 
 ### FEM Calculation and numerical Implementation
 
-As we saw in the previous section it was possible to reduce the problem to solve a linear system of equations. But there is a lot simplifications
-you can do to make your life easier. The first thing you can do in FEM calculations is to choose the basis ![Basis V](http://mathurl.com/z6vfl6c.png)
-in that way that  You can easily achieve this by just take functions with a reasonable small support. In the simplest case you can choose so called
+As we saw in the previous section it is possible to reduce the problem to solve a linear system of equations. But there are some simplifications
+you can do, to make your life easier. The first thing you can do in FEM calculations is to choose the basis ![Basis V](http://mathurl.com/z6vfl6c.png)
+in a way that the most entries of the matrix of the linear system are zero. You can easily achieve this by taking functions with a reasonable small support. In the simplest case you can choose so called
 hat functions.
 
-Let us show an small example to make this important fact clear. We will consider our mathematical problem
+Let us show a small example to make this important fact clear. We will consider our mathematical problem
 above for the interval ![example interval](http://mathurl.com/hs6andc.png). On this interval we define the mesh ![example mesh](http://mathurl.com/h9q3jpa.png) with
 ![first mesh element](http://mathurl.com/hkpbsrd.png) and ![second mesh element](http://mathurl.com/hr9lpy9.png).
 Each element is defined as ![example element](http://mathurl.com/gwj427t.png). The hat functions are piecewise linear functions with the property 
-![hat function property](http://mathurl.com/gsbfoey.png) (compare fig. 1). Now we have the notation to write the bilinear form as
+![hat function property](http://mathurl.com/gsbfoey.png). Now we have the enough notation to write the bilinear form as
 
 ![element wise calculation](http://mathurl.com/zvgevjc.png)
 
