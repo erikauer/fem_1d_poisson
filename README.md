@@ -57,8 +57,7 @@ After integration by parts we get
 
 ![Finish Weak Form](http://mathurl.com/z6wgk5c.png)
 
-In the previous equation we used that the boundary integral is zero because of the choice of the shape function.
-
+In the previous equation we used that the boundary integral is zero because of the choice of the shape function. 
 To summarize our result we get the weak form of the poisson equation with dirichlet boundary condition:
 
 Find ![solution](http://mathurl.com/zf5rrkt.png) that
@@ -70,9 +69,7 @@ for all ![Test function](http://mathurl.com/jqayfas.png).
 ###  Discretization and FEM
 
 The idea of FEM is to replace the continuous space ![Space H](http://mathurl.com/gqnqmtv.png) with a finite dimensional 
-linear space ![Space V](http://mathurl.com/2fanld2.png).
-
-So this leads to the discrete weak formulation
+linear space ![Space V](http://mathurl.com/2fanld2.png). So this leads to the discrete weak formulation:
 
 Find ![solution finite](http://mathurl.com/z4me4ey.png) that
 
@@ -87,20 +84,70 @@ This allows us to write each element in ![Space V](http://mathurl.com/2fanld2.pn
 
 and
 
-![test function in basis](http://mathurl.com/j4oakn9.png).
+![test function in basis](http://mathurl.com/j4oakn9.png)
 
-With ![sum coefficents](http://mathurl.com/h8umoau.png). Inserting these both equations into the weak formulation and using the linearity we get 
+with ![sum coefficents](http://mathurl.com/h8umoau.png). Inserting these both equations into the discrete weak formulation and using the linearity of a and F we get 
 following result:
 
-![fem herleitung 1](http://mathurl.com/je55qkk.png)
+![fem derivation 1](http://mathurl.com/je55qkk.png)
 
-Let us define ![fem herleitung 2](http://mathurl.com/gv5263e.png) to write the equation above in vector form. We obtain
+Let us define ![fem derivation 2](http://mathurl.com/gv5263e.png) to write the equation above in vector form. We obtain
 
-![fem herleitung 3](http://mathurl.com/h5ojlym.png)
+![fem derivation 3](http://mathurl.com/h5ojlym.png)
 
 which is equal to the linear System
 
-![fem herleitung 4](http://mathurl.com/jutjpqp.png).
+![fem derivation 4](http://mathurl.com/jutjpqp.png).
+
+### FEM Calculation and numerical Implementation
+
+As we saw in the previous section it was possible to reduce the problem to solve a linear system of equations. But there is a lot simplifications
+you can do to make your life easier. The first thing you can do in FEM calculations is to choose the basis ![Basis V](http://mathurl.com/z6vfl6c.png)
+in that way that  You can easily achieve this by just take functions with a reasonable small support. In the simplest case you can choose so called
+hat functions.
+
+Let us show an small example to make this important fact clear. We will consider our mathematical problem
+above for the interval ![example interval](http://mathurl.com/hs6andc.png). On this interval we define the mesh ![example mesh](http://mathurl.com/h9q3jpa.png) with
+![first mesh element](http://mathurl.com/hkpbsrd.png) and ![second mesh element](http://mathurl.com/hr9lpy9.png).
+Each element is defined as ![example element](http://mathurl.com/gwj427t.png). The hat functions are piecewise linear functions with the property 
+![hat function property](http://mathurl.com/gsbfoey.png) (compare fig. 1). Now we have the notation to write the bilinear form as
+
+![element wise calculation](http://mathurl.com/zvgevjc.png)
+
+As you see above we can calculate the bilinear form by calculating the integrals for each single element. A lot of these integrals
+are zero because of the small support of the hat functions. In the practical implementation it is very useful if you don't have to define
+each single hat function. For this reason we define a reference element for the interval ![example interval](http://mathurl.com/hs6andc.png) and
+transform the integrals into the reference element. First we consider the corresponding transformation. For any element we can define the transformation
+
+![element transformation](http://mathurl.com/jkbzpgw.png)
+
+that transform each value from the reference element into a value of the physical element. The first derivation of the transformation is
+
+![element transformation derivation](http://mathurl.com/zk8p3q9.png).
+
+Let be ![left hat function reference element](http://mathurl.com/h9eqkpu.png) the left hat function of the reference element and 
+![right hat function reference element](http://mathurl.com/h4efa98.png) the right hat function of the reference element. The following sketch shows the reference
+element together with its shape functions.
 
 
+![reference element](./img/referenceElement_small.png)
 
+With the transformation function we obtain the relation
+
+![shape function relation](http://mathurl.com/ztwfekd.png)
+
+and therefore
+
+![shape function relation](http://mathurl.com/hw9s4kv.png)
+
+for any element ![physical element](http://mathurl.com/j6hbh52.png).
+
+Finally we can transform each integral of any physical element to the reference element. For the bilinear form we obtain
+
+![integral transformation a](http://mathurl.com/h3xj9sy.png)
+
+and analogue we obtain the integral for the RHS
+
+![intergral transformation f](http://mathurl.com/jatdkjv.png)
+
+This allows us to just implement the two shape functions for the reference element and just consider each integral on the reference element.
